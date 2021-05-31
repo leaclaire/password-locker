@@ -27,7 +27,7 @@ class User:
 		'''
 		User.users_list.append(self)
 		
-class Details:
+class Detail:
 	'''
 	Class to create  account details, generate passwords and save their information
 	'''
@@ -61,24 +61,24 @@ class Details:
 		Function to save a newly created user instance
 		'''
 		# global users_list
-		Details.details_list.append(self)
+		Detail.details_list.append(self)
 	
 	def generate_password(size=8, char=string.ascii_uppercase+string.ascii_lowercase+string.digits):
 		'''
-		Function to generate an 8 character password for a details
+		Function to generate an 8 character password for a detail
 		'''
 		gen_pass=''.join(random.choice(char) for _ in range(size))
 		return gen_pass
 
 	@classmethod
-	def display_details(cls,user_name):
+	def display_deatails(cls,user_name):
 		'''
 		Class method to display the list of details saved
 		'''
 		user_details_list = []
-		for details in cls.details_list:
-			if details.user_name == user_name:
-				user_details_list.append(details)
+		for detail in cls.details_list:
+			if detail.user_name == user_name:
+				user_details_list.append(detail)
 		return user_details_list
 				
 
@@ -86,17 +86,17 @@ class Details:
 	@classmethod
 	def find_by_site_name(cls, site_name):
 		'''
-		Method that takes in a site_name and returns a details that matches that site_name.
+		Method that takes in a site_name and returns a detail that matches that site_name.
 		'''
-		for details in cls.details_list:
-			if details.site_name == site_name:
-				return details
+		for detail in cls.details_list:
+			if detail.site_name == site_name:
+				return detail
 
 	@classmethod
-	def copy_details(cls,site_name):
+	def copy_detail(cls,site_name):
 		'''
 		Class method that copies a details info after the details site name is entered
 		'''
-		find_details = Details.find_by_site_name(site_name)
-		return pyperclip.copy(find_details.password)
+		find_detail = Detail.find_by_site_name(site_name)
+		return pyperclip.copy(find_detail.password)
 
