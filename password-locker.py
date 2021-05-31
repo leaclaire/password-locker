@@ -1,5 +1,5 @@
 import pyperclip
-from user_details import User, Details
+from user_cdetails import User, Detail
 
 def create_user(fname,lname,password):
 	'''
@@ -19,40 +19,40 @@ def verify_user(first_name,password):
 	'''
 	Function that verifies the existance of the user before creating details
 	'''
-	checking_user = Details.check_user(first_name,password)
+	checking_user = Detail.check_user(first_name,password)
 	return checking_user
 
 def generate_password():
 	'''
 	Function to generate a password automatically
 	'''
-	gen_pass = Details.generate_password()
+	gen_pass = Detail.generate_password()
 	return gen_pass
 
-def create_details(user_name,site_name,account_name,password):
+def create_detail(user_name,site_name,account_name,password):
 	'''
-	Function to create a new details
+	Function to create a new detail
 	'''
-	new_details=details(user_name,site_name,account_name,password)
-	return new_details
+	new_detail=Detail(user_name,site_name,account_name,password)
+	return new_detail
 
-def save_details(details):
+def save_detail(cdetail):
 	'''
-	Function to save a newly created details
+	Function to save a newly created detail
 	'''
-	Details.save_details(details)
+	Detail.save_details(detail)
 
 def display_details(user_name):
 	'''
 	Function to display details saved by a user
 	'''
-	return Details.display_details(user_name)
+	return Detail.display_details(user_name)
 	
-def copy_details(site_name):
+def copy_detail(site_name):
 	'''
-	Function to copy a user details to the clipboard
+	Function to copy a users details to the clipboard
 	'''
-	return Details.copy_details(site_name)
+	return Detail.copy_detail(site_name)
 
 def main():
 	print(' ')
@@ -88,7 +88,7 @@ def main():
 				print(' ')
 				while True:
 					print("-"*60)
-					print('Navigation codes: \n cc-Create a detail \n dc-Display Details \n copy-Copy Password \n ex-Exit')
+					print('Navigation codes: \n cc-Create a Detail \n dc-Display CDetails \n copy-Copy Password \n ex-Exit')
 					short_code = input('Enter a choice: ').lower().strip()
 					print("-"*60)
 					if short_code == 'ex':
@@ -117,17 +117,17 @@ def main():
 								break
 							else:
 								print('Wrong option entered.Please try again.')
-						save_details(create_details(user_name,site_name,account_name,password))
+						save_detail(create_detail(user_name,site_name,account_name,password))
 						print(' ')
-						print(f'Details Created: Site Name: {site_name} - Account Name: {account_name} - Password: {password}')
+						print(f'Detail Created: Site Name: {site_name} - Account Name: {account_name} - Password: {password}')
 						print(' ')
 					elif short_code == 'dc':
 						print(' ')
 						if display_details(user_name):
-							print('Here is a list of all your credentials')
+							print('Here is a list of all your details')
 							print(' ')
-							for details in display_details(user_name):
-								print(f'Site Name: {detail.site_name} - Account Name: {details.account_name} - Password: {details.password}')
+							for detail in display_details(user_name):
+								print(f'Site Name: {detail.site_name} - Account Name: {detail.account_name} - Password: {detail.password}')
 							print(' ')	
 						else:
 							print(' ')
@@ -135,8 +135,8 @@ def main():
 							print(' ')
 					elif short_code == 'copy':
 						print(' ')
-						chosen_site = input('Enter the site name for the details password to copy: ')
-						copy_details(chosen_site)
+						chosen_site = input('Enter the site name for the detail password to copy: ')
+						copy_detail(chosen_site)
 						print('')
 					else:
 						print('Wrong option entered.Please try again.')
@@ -158,6 +158,4 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-
 
